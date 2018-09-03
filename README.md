@@ -2,61 +2,60 @@
 
 
 ## Overview
-OpenFin Layouts delivers window management and layout user experience across the desktop for OpenFin-based applications.
-
-OpenFin Layouts core repository - https://github.com/HadoukenIO/layouts-service
+OpenFin Layouts delivers window management and layout user experience across the desktop for OpenFin-based applications - https://github.com/HadoukenIO/layouts-service
 
 This project examplifies how to build your own tabstrip to be used with the Layouts service
 
 ### Dependencies
-- OpenFin Layouts client API's - npm package
-- A http(s) server
+- Application using OpenFin Layouts - see https://github.com/HadoukenIO/layouts-service
+- OpenFin Runtime & RVM dependencies - see https://github.com/HadoukenIO/layouts-service
 
 ### Features
-- Example tabstrip supporting the events
-- 
-- Windows snap to the right or bottom edges of window or group.
-- API available to undock or opt-out of snapping.
-- On inclusion of plugin script undocking with `CTRL+SHIFT+U` or `CMD+SHIFT+U`.
-- A window will not snap if it detects a collision. It will not try to find a more suitable point.
+- Example tabstrip with UI elements for tabs, with icons and css for maximize/minimize/close/restore
+- Tabstrip enables rearranging and renaming tabs
+- The code wires the tabstrip to the following events emited by the Layouts service
+-- 'join-tab-group'
+-- 'leave-tab-group'
+-- 'tab-activated'
+
+### Repository overview
+
+- Images in /build/css/image
+- CSS in /build/css
+- Typescript code
+-- Separate tabs on the tabstrip - /src/TabItem.ts
+-- Tabstrip - /src/TabManager.ts
+-- Wiring and setup - /main.ts   
+- HTHM, with template section - /build/css/tabstrip.html
 
 ### Run Locally
 - Node 8.11 LTS.
-    
+
 ```
 npm install 
 npm build
 ```
-The files in 
+The files in /build need to be hosted on a server under your control
+
 ## Getting Started
-
-Using the Layouts service is done in two steps, add the service to application manifest and import the API:
-
-
-### Import the Client API
-
-```bash
-npm install openfin-layouts
-```
 
 ### Usage
 
-```javascript
-import {undock, deregister} from 'openfin-layouts';
+To use a custom tabstrip in an application, call setTabClient on startup of the application.
+The applications main window and all child windows will now use the custom tabstrip when windows are tabbed, either programatically or by user drag/drop actions.
+Windows with different tabstrips cannot be tabbed together. 
 
-undock().then(() => console.log('successfully undocked myself'));
-undock({uuid: 'otherWindow', name: 'otherWindow'}).then(() => console.log('successfully undocked otherWindow'));
-deregister().then(() => console.log('successfully deregistered myself'));
-deregister({uuid: 'otherWindow', name: 'otherWindow'}).then(() => console.log('successfully deregistered otherWindow'));
+REFERENCE to JS/TS/docss ->
+
+```typescript
+//import the client module
+import * as Layouts from "openfin-layouts"
+
+Layouts.setTabClient("http://localhost:8080/tabstrip.html");
+
 ```
 
 ### Notes
-- Testing runtime version must be >= 9.*
-- alpha RVM
-- If using Parallels Desktop, you have to be in a mode where Parallels can control the mouse. Set `Settings>Hardware>Mouse&Keyboard>Mouse` to `Optimize for Games`
-- Other setups haven't been tested
-
-
 
 ## License
 This project uses the [Apache2 license](https://www.apache.org/licenses/LICENSE-2.0)
