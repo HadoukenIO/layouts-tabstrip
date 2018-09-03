@@ -26,7 +26,7 @@ This project examplifies how to build your own tabstrip to be used with the Layo
   - Separate tabs on the tabstrip - /src/TabItem.ts
   - Tabstrip - /src/TabManager.ts
   - Wiring and setup - /main.ts   
-- HTHL, with template section - /build/css/tabstrip.html
+- HTML, with template section - /build/css/tabstrip.html
 
 ### Run Locally
 - Node 8.11 LTS.
