@@ -14,9 +14,9 @@ This project examplifies how to build your own tabstrip to be used with the Layo
 - Example tabstrip with UI elements for tabs, with icons and css for maximize/minimize/close/restore
 - Tabstrip enables rearranging and renaming tabs
 - The code wires the tabstrip to the following events emited by the Layouts service
-- - 'join-tab-group'
-- - 'leave-tab-group'
-- - 'tab-activated'
+  - 'join-tab-group' 
+  - 'leave-tab-group'
+  - 'tab-activated'
 
 ### Repository overview
 
