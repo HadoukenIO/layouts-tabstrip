@@ -23,9 +23,9 @@ This project examplifies how to build your own tabstrip to be used with the Layo
 - Images in /build/css/image
 - CSS in /build/css
 - Typescript code
-- - Separate tabs on the tabstrip - /src/TabItem.ts
-- - Tabstrip - /src/TabManager.ts
-- - Wiring and setup - /main.ts   
+  - Separate tabs on the tabstrip - /src/TabItem.ts
+  - Tabstrip - /src/TabManager.ts
+  - Wiring and setup - /main.ts   
 - HTHM, with template section - /build/css/tabstrip.html
 
 ### Run Locally
