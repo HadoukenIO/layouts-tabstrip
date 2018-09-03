@@ -26,7 +26,7 @@ This project examplifies how to build your own tabstrip to be used with the Layo
   - Separate tabs on the tabstrip - /src/TabItem.ts
   - Tabstrip - /src/TabManager.ts
   - Wiring and setup - /main.ts   
-- HTHM, with template section - /build/css/tabstrip.html
+- HTHL, with template section - /build/css/tabstrip.html
 
 ### Run Locally
 - Node 8.11 LTS.
@@ -44,8 +44,6 @@ The files in /build need to be hosted on a server under your control
 To use a custom tabstrip in an application, call setTabClient on startup of the application.
 The applications main window and all child windows will now use the custom tabstrip when windows are tabbed, either programatically or by user drag/drop actions.
 Windows with different tabstrips cannot be tabbed together. 
-
-REFERENCE to JS/TS/docss ->
 
 ```typescript
 //import the client module
