@@ -1,0 +1,21 @@
+{
+  "name": "tabstrip",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "run build",
+    "build": "webpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/openfin": "^29.0.1",
+    "openfin-layouts": "0.0.3-alpha.66",
+    "sortablejs": "^1.7.0",
+    "ts-loader": "^4.5.0",
+    "typescript": "^3.0.3",
+    "webpack": "^4.17.1",
+    "webpack-cli": "^3.1.0"
+  }
+}
