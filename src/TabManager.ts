@@ -1,4 +1,5 @@
-import Sortable from 'sortablejs';
+//@ts-ignore
+import * as Sortable from 'sortablejs';
 
 import * as layouts from 'openfin-layouts';  //The equivalent of 'openfin-layouts' NPM package outside of this project.
 import {TabIdentifier, TabProperties} from './main';
