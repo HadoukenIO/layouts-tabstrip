@@ -33,7 +33,7 @@ This project examplifies how to build your own tabstrip to be used with the Layo
 
 ```
 npm install 
-npm build
+npm run build
 ```
 The files in /build need to be hosted on a server under your control
 
