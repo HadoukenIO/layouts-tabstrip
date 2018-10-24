@@ -4,7 +4,12 @@
 ## Overview
 OpenFin Layouts delivers window management and layout user experience across the desktop for OpenFin-based applications - https://github.com/HadoukenIO/layouts-service
 
-This project examplifies how to build your own tabstrip to be used with the Layouts service
+This project is an example of how to build your own tabstrip to be used with the Layouts service. 
+
+This repo is meant for educational purposes only, so we have removed the build script. Do not try to build this repo and use it in your application.
+If you want to see this code in action, take a look at the `layouts-service` repo:
+https://github.com/HadoukenIO/layouts-service/tree/develop/res/provider/tabbing/tabstrip
+https://github.com/HadoukenIO/layouts-service/tree/develop/src/provider/tabbing/tabstrip
 
 ### Dependencies
 - Application using OpenFin Layouts - see https://github.com/HadoukenIO/layouts-service
@@ -27,15 +32,6 @@ This project examplifies how to build your own tabstrip to be used with the Layo
   - Tabstrip - /src/TabManager.ts
   - Wiring and setup - /main.ts   
 - HTML, with template section - /build/css/tabstrip.html
-
-### Run Locally
-- Node 8.11 LTS.
-
-```
-npm install 
-npm run build
-```
-The files in /build need to be hosted on a server under your control
 
 ## Getting Started
 

@@ -4,15 +4,14 @@
   "description": "",
   "main": "src/main.js",
   "scripts": {
-    "start": "node server.js",
-    "build": "webpack --mode development"
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@types/openfin": "^29.0.1",
     "express": "^4.16.3",
-    "openfin-layouts": "^0.0.3-alpha.71",
+    "openfin-layouts": "^0.9.2",
     "sortablejs": "^1.7.0",
     "ts-loader": "^4.5.0",
     "typescript": "~2.9.1",
