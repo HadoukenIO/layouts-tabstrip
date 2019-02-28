@@ -11,7 +11,7 @@
   "dependencies": {
     "@types/openfin": "^39.0.1",
     "express": "^4.16.3",
-    "openfin-layouts": "^1.0.0-alpha.35",
+    "openfin-layouts": "^1.0.0",
     "sortablejs": "^1.7.0",
     "ts-loader": "^4.4.2",
     "typescript": "~3.0.3",
