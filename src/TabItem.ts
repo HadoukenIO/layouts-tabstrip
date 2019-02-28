@@ -1,7 +1,7 @@
 
-import * as layouts from 'openfin-layouts';  //The equivalent of 'openfin-layouts' NPM package outside of this project.
+import * as layouts from 'openfin-layouts';
+import {TabProperties} from 'openfin-layouts/dist/client/tabbing';
 
-import {TabIdentifier, TabProperties} from './main';
 import {TabManager} from './TabManager';
 
 export class Tab {
@@ -18,7 +18,7 @@ export class Tab {
     /**
      * ID of the Tab (uuid, name);
      */
-    private _ID: TabIdentifier;
+    private _ID: layouts.WindowIdentity;
 
     /**
      * Handle to the TabManager
@@ -27,10 +27,10 @@ export class Tab {
 
     /**
      * Constructor for the Tab class.
-     * @param {TabIdentifier} tabID An object containing the uuid, name for the external application/window.
+     * @param {WindowIdentity} tabID An object containing the uuid, name for the external application/window.
      * @param {TabManager} tabManager Reference to the tab manager handling this tab.
      */
-    constructor(tabID: TabIdentifier, tabProperties: TabProperties, tabManager: TabManager) {
+    constructor(tabID: layouts.WindowIdentity, tabProperties: TabProperties, tabManager: TabManager) {
         this._ID = tabID;
         this._properties = tabProperties;
         this._tabManager = tabManager;
@@ -90,9 +90,8 @@ export class Tab {
      * @param {DragEvent} e DragEvent
      */
     private _onDragStart(e: DragEvent): boolean {
-        e.dataTransfer.effectAllowed = 'move';
-        layouts.tabStrip.startDrag();
-
+        e.dataTransfer!.effectAllowed = 'move';
+        layouts.tabstrip.startDrag(this._ID);
         return true;
     }
 
@@ -101,7 +100,7 @@ export class Tab {
      * @param {DragEvent} e DragEvent
      */
     private _onDragEnd(e: DragEvent): void {
-        layouts.tabStrip.endDrag(e, {uuid: this._ID.uuid, name: this._ID.name});
+        layouts.tabstrip.endDrag();
     }
 
     /**
@@ -129,7 +128,9 @@ export class Tab {
     private _onMouseDownHandler(e: MouseEvent): void {
         this.setActive();
 
-        layouts.setActiveTab({uuid: this._ID.uuid, name: this._ID.name});
+        if ((e.target as Element).className !== 'tab-exit') {
+            layouts.tabbing.setActiveTab(this._ID);
+        }
     }
 
 
@@ -138,12 +139,8 @@ export class Tab {
      * @param {MouseEvent} e MouseEvent
      */
     private _onClickHandler(e: MouseEvent): void {
-        switch ((e.target as Element).className) {
-            case 'tab-exit': {
-                layouts.closeTab({uuid: this._ID.uuid, name: this._ID.name});
-                break;
-            }
-            default: { layouts.setActiveTab({uuid: this._ID.uuid, name: this._ID.name}); }
+        if ((e.target as Element).className === 'tab-exit') {
+            layouts.tabbing.closeTab(this._ID);
         }
     }
 
@@ -158,7 +155,7 @@ export class Tab {
                 this._handlePropertiesInput();
                 break;
             }
-            default: { layouts.setActiveTab({uuid: this._ID.uuid, name: this._ID.name}); }
+            default: { layouts.tabbing.setActiveTab(this._ID); }
         }
     }
 
@@ -202,7 +199,10 @@ export class Tab {
             try {
                 inputNode.remove();
                 that.updateText(inputNode.value);
-                layouts.tabStrip.updateTabProperties({uuid: that._ID.uuid, name: that._ID.name}, {title: inputNode.value});
+                layouts.tabbing.updateTabProperties(
+                    {title: inputNode.value},
+                    that._ID,
+                );
             } catch (e) {
             }
         }
@@ -222,10 +222,10 @@ export class Tab {
 
     /**
      * Returns tab identifier object consisting of UUID, Name
-     * @returns {TabIdentifier} {uuid, name}
+     * @returns {WindowIdentity} {uuid, name}
      */
-    public get ID(): TabIdentifier {
-        return {uuid: this._ID.uuid, name: this._ID.name};
+    public get ID(): layouts.WindowIdentity {
+        return this._ID;
     }
 
     /**
